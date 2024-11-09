@@ -1,0 +1,199 @@
+{
+	"scopeName": "source.cob",
+	"comment": "For simplicity we glob import a lot of things that are more hidden in the sublime-syntax version.",
+	"patterns": [
+		{ "include": "#glob_import" },
+		{ "include": "#sections" }
+	],
+	"repository": {
+		"glob_import": {
+			"patterns": [
+				{ "comment": "TODO: This line doesn't show anything in at least some vscode themes for whitespace." },
+				{ "match": "[^A-Za-z0-9_ \n;,\\{\\}\\[\\]\\(\\)<>\\-+=$#@!%*?\\:\\\\/.\"']+", "name": "invalid.illegal.charset.cob" },
+				{ "include": "#constants" },
+
+				{ "include": "#import_self" },
+				{ "include": "#as_alias" },
+				{ "include": "#param" },
+				{ "include": "#maybe_param" },
+				{ "include": "#spec_insert" },
+				{ "include": "#spec_content" },
+				{ "include": "#spec_invocation" },
+
+				{ "include": "#macro_call" },
+				{ "include": "#type_identifiers" },
+				{ "include": "#param_identifiers" },
+
+				{ "include": "#values" },
+				{ "include": "#global_symbols" }
+			]
+		},
+		"line_comment": {
+			"name": "comment.line.double-slash.cob",
+			"begin": "//",
+			"end": "$"
+		},
+		"block_comment": {
+			"name": "comment.block.cob",
+			"begin": "/\\*",
+			"end": "\\*/"
+		},
+		"lang_constant": {
+			"match": "\\b(true|false|none|auto|nan|inf)\\b",
+			"name": "constant.language.cob"
+		},
+		"lang_type": {
+			"match": "\\b(f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize|bool|char)\\b",
+			"name": "storage.type.rust"
+		},
+		"number": {
+			"match": "(?x:-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)?(px|%|vw|vh|vmin|vmax)?)",
+			"name": "constant.numeric.cob"
+		},
+		"hex_literal": {
+			"match": "(?:#\\h{6}(\\h{2})?)",
+			"name": "constant.other.cob"
+		},
+		"string": {
+			"begin": "(b?)(\")",
+			"end": "\"",
+			"name": "string.quoted.double.cob",
+			"patterns": [{ "include": "#escapes" }, { "include": "#line_continuation" }, { "include": "#bad_line_continuation"}]
+		},
+		"escapes": {
+			"comment": "escapes: ASCII, byte, Unicode, quote, regex",
+			"match": "(\\\\)(?:(?:(x[0-7][0-7a-fA-F])|(u(\\{)[\\da-fA-F]{1,6}(\\}))|.))",
+			"name": "constant.character.escape.cob",
+			"captures": {
+				"1": {
+				"name": "constant.character.escape.backslash.cob"
+				},
+				"2": {
+				"name": "constant.character.escape.bit.cob"
+				},
+				"3": {
+				"name": "constant.character.escape.unicode.cob"
+				},
+				"4": {
+				"name": "constant.character.escape.unicode.punctuation.cob"
+				},
+				"5": {
+				"name": "constant.character.escape.unicode.punctuation.cob"
+				}
+			}
+		},
+		"line_continuation": {
+			"match": "\\\\$\n",
+			"name": "constant.character.escape.cob"
+		},
+		"bad_line_continuation": {
+			"match": "$\n",
+			"name": "invalid.illegal.unclosed-string.cob"
+		},
+		"values": {
+			"patterns": [
+				{ "include": "#line_comment" },
+				{ "include": "#block_comment" },
+				{ "include": "#lang_constant" },
+				{ "include": "#lang_type" },
+				{ "include": "#number" },
+				{ "include": "#hex_literal" },
+				{ "include": "#string" }
+			]
+		},
+
+		"global_symbols-punctuation": {
+			"match": "[:,]",
+			"name": "punctuation.separator.cob"
+		},
+		"global_symbols-operators": {
+			"match": "[=]",
+			"name": "keyword.operator.cob"
+		},
+		"global_symbols": {
+			"patterns": [
+				{ "include": "#global_symbols-punctuation" },
+				{ "include": "#global_symbols-operators" }
+			]
+		},
+		"macro_call-data": {
+			"match": "(?:[a-z][a-z_0-9]*[:][:])*[a-z][a-z_0-9]*\\!",
+			"name": "entity.name.function.macro.cob"
+		},
+		"macro_call-instruction": {
+			"match": "(?:[a-z][a-z_0-9]*[:][:])*[A-Z][A-Za-z_0-9]*\\!",
+			"name": "entity.name.function.macro.cob"
+		},
+		"macro_call-scene": {
+			"match": "\\+(?:[a-z][a-z_0-9]*[:][:])*[a-z][a-z_0-9]*",
+			"name": "entity.name.function.macro.cob"
+		},
+		"macro_call": {
+			"patterns": [
+				{ "include": "#macro_call-data" },
+				{ "include": "#macro_call-instruction" },
+				{ "include": "#macro_call-scene" }
+			]
+		},
+		"type_identifiers": {
+			"match": "[A-Z][A-Za-z_0-9]*\\b",
+			"name": "storage.type.cob"
+		},
+		"param_identifiers": {
+			"match": "([a-z][a-z_0-9]*)\\b\\s*:",
+			"captures": {
+				"1": {"name": "variable.other.cob"}
+			}
+		},
+
+		"as_alias": {
+			"match": "\\b(as)\\b",
+			"name": "keyword.operator.cob"
+		},
+		"param": {
+			"match": "@[a-z][a-z_0-9]*(?:[.][a-z][a-z_0-9]*)*\\b",
+			"name": "variable.parameter.cob"
+		},
+		"maybe_param": {
+			"match": "\\?[a-z][a-z_0-9]*(?:[.][a-z][a-z_0-9]*)*\\b",
+			"name": "variable.parameter.cob"
+		},
+
+
+		"import_self": {
+			"match": "\\b(self)\\b",
+			"name": "variable.language.cob"
+		},
+		"spec_insert": {
+			"match": "![A-Za-z][a-z_0-9]*\\b",
+			"name": "variable.parameter.cob"
+		},
+		"spec_content": {
+			"match": "[*]",
+			"name": "keyword.operator.cob"
+		},
+		"spec_invocation": {
+			"match": "(#spec)(:)([a-z][a-z_0-9]*)\\b",
+			"captures": {
+				"1": {"name": "keyword.other.cob"},
+				"2": {"name": "punctuation.separator.cob"},
+				"3": {"name": "variable.parameter.cob"}
+			}
+		},
+
+		"constants" : {
+			"match": "(\\$)?(\\$)([A-Za-z][A-Za-z_0-9]*\\b(::)?)+",
+			"name": "variable.parameter.cob"
+		},
+	
+		"unspecialized_sections": {
+			"match": "(?:^#(manifest|import|using|defs|commands|scenes|specs))\\b",
+			"name": "keyword.other.cob"
+		},
+		"sections" : {
+			"patterns": [
+				{ "include": "#unspecialized_sections" }
+			]
+		}
+    }
+}

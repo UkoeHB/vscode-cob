@@ -1,0 +1,34 @@
+{
+  "name": "vscode-cob",
+  "displayName": "CobwebAssetFormat",
+  "description": "Cobweb Asset Format for the bevy_cobweb_ui rust crate.",
+  "version": "0.0.1",
+	"license": "MIT",
+  "homepage": "https://github.com/UkoeHB/vscode-cob",
+  "bugs": {
+      "url": "https://github.com/UkoeHB/vscode-cob/issues"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/UkoeHB/vscode-cob"
+  },
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "cob",
+      "aliases": ["COB", "cob"],
+      "extensions": [".cob"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "cob",
+      "scopeName": "source.cob",
+      "path": "./syntaxes/cob.tmLanguage.json"
+    }]
+  }
+}
