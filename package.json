@@ -2,7 +2,7 @@
   "name": "vscode-cob",
   "displayName": "CobwebAssetFormat",
   "description": "Cobweb Asset Format for the bevy_cobweb_ui rust crate.",
-  "version": "0.0.1",
+  "version": "0.0.2",
 	"license": "MIT",
   "homepage": "https://github.com/UkoeHB/vscode-cob",
   "bugs": {

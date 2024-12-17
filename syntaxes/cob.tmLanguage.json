@@ -9,16 +9,13 @@
 		"glob_import": {
 			"patterns": [
 				{ "comment": "TODO: This line doesn't show anything in at least some vscode themes for whitespace." },
-				{ "match": "[^A-Za-z0-9_ \n;,\\{\\}\\[\\]\\(\\)<>\\-+=$#@!%*?\\:\\\\/.\"']+", "name": "invalid.illegal.charset.cob" },
+				{ "match": "[^A-Za-z0-9_ \n;,\\{\\}\\[\\]\\(\\)<>\\-+=$#@!%*?^\\:\\\\/.\"']+", "name": "invalid.illegal.charset.cob" },
 				{ "include": "#constants" },
 
 				{ "include": "#import_self" },
 				{ "include": "#as_alias" },
 				{ "include": "#param" },
 				{ "include": "#maybe_param" },
-				{ "include": "#spec_insert" },
-				{ "include": "#spec_content" },
-				{ "include": "#spec_invocation" },
 
 				{ "include": "#macro_call" },
 				{ "include": "#type_identifiers" },
@@ -103,7 +100,7 @@
 		},
 
 		"global_symbols-punctuation": {
-			"match": "[:,]",
+			"match": "[;,]",
 			"name": "punctuation.separator.cob"
 		},
 		"global_symbols-operators": {
@@ -116,22 +113,12 @@
 				{ "include": "#global_symbols-operators" }
 			]
 		},
-		"macro_call-data": {
-			"match": "(?:[a-z][a-z_0-9]*[:][:])*[a-z][a-z_0-9]*\\!",
-			"name": "entity.name.function.macro.cob"
-		},
-		"macro_call-instruction": {
-			"match": "(?:[a-z][a-z_0-9]*[:][:])*[A-Z][A-Za-z_0-9]*\\!",
-			"name": "entity.name.function.macro.cob"
-		},
 		"macro_call-scene": {
 			"match": "\\+(?:[a-z][a-z_0-9]*[:][:])*[a-z][a-z_0-9]*",
 			"name": "entity.name.function.macro.cob"
 		},
 		"macro_call": {
 			"patterns": [
-				{ "include": "#macro_call-data" },
-				{ "include": "#macro_call-instruction" },
 				{ "include": "#macro_call-scene" }
 			]
 		},
@@ -164,22 +151,6 @@
 			"match": "\\b(self)\\b",
 			"name": "variable.language.cob"
 		},
-		"spec_insert": {
-			"match": "![A-Za-z][a-z_0-9]*\\b",
-			"name": "variable.parameter.cob"
-		},
-		"spec_content": {
-			"match": "[*]",
-			"name": "keyword.operator.cob"
-		},
-		"spec_invocation": {
-			"match": "(#spec)(:)([a-z][a-z_0-9]*)\\b",
-			"captures": {
-				"1": {"name": "keyword.other.cob"},
-				"2": {"name": "punctuation.separator.cob"},
-				"3": {"name": "variable.parameter.cob"}
-			}
-		},
 
 		"constants" : {
 			"match": "(\\$)?(\\$)([A-Za-z][A-Za-z_0-9]*\\b(::)?)+",
@@ -187,7 +158,7 @@
 		},
 	
 		"unspecialized_sections": {
-			"match": "(?:^#(manifest|import|using|defs|commands|scenes|specs))\\b",
+			"match": "(?:^#(manifest|import|defs|commands|scenes))\\b",
 			"name": "keyword.other.cob"
 		},
 		"sections" : {
