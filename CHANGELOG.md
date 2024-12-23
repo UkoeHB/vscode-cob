@@ -2,7 +2,7 @@
 
 All notable changes to the "cob" extension will be documented in this file.
 
-## WIP
+## Tag 0.0.3
 
 - Allow `\r` as valid whitespace character.
 
