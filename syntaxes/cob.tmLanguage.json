@@ -9,7 +9,7 @@
 		"glob_import": {
 			"patterns": [
 				{ "comment": "TODO: This line doesn't show anything in at least some vscode themes for whitespace." },
-				{ "match": "[^A-Za-z0-9_ \n;,\\{\\}\\[\\]\\(\\)<>\\-+=$#@!%*?^\\:\\\\/.\"']+", "name": "invalid.illegal.charset.cob" },
+				{ "match": "[^A-Za-z0-9_ \r\n;,\\{\\}\\[\\]\\(\\)<>\\-+=$#@!%*?^\\:\\\\/.\"']+", "name": "invalid.illegal.charset.cob" },
 				{ "include": "#constants" },
 
 				{ "include": "#import_self" },

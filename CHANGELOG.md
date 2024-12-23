@@ -2,6 +2,10 @@
 
 All notable changes to the "cob" extension will be documented in this file.
 
+## WIP
+
+- Allow `\r` as valid whitespace character.
+
 ## Tag 0.0.2
 
 - Cleanup speculative design for data and instruction macros.
