@@ -44,7 +44,7 @@
 			"name": "storage.type.rust"
 		},
 		"number": {
-			"match": "(?x:-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)?(px|%|vw|vh|vmin|vmax)?)",
+			"match": "(?x:-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)?(px|%|vw|vh|vmin|vmax|fr)?)",
 			"name": "constant.numeric.cob"
 		},
 		"hex_literal": {
