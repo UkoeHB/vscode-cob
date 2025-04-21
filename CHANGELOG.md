@@ -2,6 +2,10 @@
 
 All notable changes to the "cob" extension will be documented in this file.
 
+## Tag 0.0.5
+
+- Add `.cobweb` file extension.
+
 ## Tag 0.0.4
 
 - Add `fr` builtin type.

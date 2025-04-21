@@ -22,7 +22,7 @@
     "languages": [{
       "id": "cob",
       "aliases": ["COB", "cob"],
-      "extensions": [".cob"],
+      "extensions": [".cob", ".cobweb"],
       "configuration": "./language-configuration.json"
     }],
     "grammars": [{
